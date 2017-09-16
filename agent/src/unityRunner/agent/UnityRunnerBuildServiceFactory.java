@@ -155,6 +155,7 @@ public class UnityRunnerBuildServiceFactory implements CommandLineBuildServiceFa
                 Path path = FileSystems.getDefault().getPath(location);
                 try (DirectoryStream<Path> stream = Files.newDirectoryStream(path, "Unity*")) {
                     for (Path entry: stream) {
+                        Loggers.AGENT.info(entry.toAbsolutePath().toString());
                         if (platform ==  UnityRunnerConfiguration.Platform.Mac) {
                             findMacUnityVersion(entry, foundUnityVersions);
                         } else if (platform == UnityRunnerConfiguration.Platform.Windows) {
